@@ -11,7 +11,9 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan("dev")); // Use morgan middleware for logging
-
+app.get('/', (req, res) => {
+    res.send('Welcome to the translation API. To translate text, send a POST request to the /translate endpoint with a JSON body containing the text to translate.');
+});
 // Routes
 app.post('/translate', async (req, res) => {
     try {
