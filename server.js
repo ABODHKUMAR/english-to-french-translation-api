@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev")); // Use morgan middleware for logging
 app.get('/', (req, res) => {
-    res.send('Welcome to the translation API. To translate text, send a POST request to the https://thoughtful-bear-cuff-links.cyclic.app//translate endpoint with a JSON body containing the text to translate.');
+    res.send('Welcome to the translation API. To translate text, send a POST request to the https://thoughtful-bear-cuff-links.cyclic.app/translate endpoint with a JSON body containing the text to translate.');
 });
 // Routes
 app.post('/translate', async (req, res) => {
