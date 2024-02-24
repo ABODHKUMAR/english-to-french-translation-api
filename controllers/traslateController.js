@@ -9,29 +9,24 @@ const translateController = async (req, res) => {
         }
 
         const encodedParams = new URLSearchParams();
-        encodedParams.set('q', text);
-        encodedParams.set('target', 'fr');
-        encodedParams.set('source', 'en');
+        encodedParams.set('from', 'en');
+        encodedParams.set('to', 'fr');
+        encodedParams.set('text', text); // Corrected variable name to 'text'
 
         const options = {
-            method: 'POST',
-            url: 'https://google-translate1.p.rapidapi.com/language/translate/v2',
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded',
-                'Accept-Encoding': 'application/gzip',
-                'X-RapidAPI-Key': 'f29f522018msh74721a988fcfd45p14b032jsn2f2e39f7842f',
-                'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
-            },
-            data: encodedParams,
+          method: 'POST',
+          url: 'https://google-translate113.p.rapidapi.com/api/v1/translator/text',
+          headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+            'X-RapidAPI-Key': '3926835e04msh1bd925d479a3f19p16ecd4jsn71da831a39ad',
+            'X-RapidAPI-Host': 'google-translate113.p.rapidapi.com'
+          },
+          data: encodedParams,
         };
 
         try {
             const response = await axios.request(options);
-            if (response.data && response.data.data && response.data.data.translations && response.data.data.translations.length > 0) {
-                return res.send({ translation: response.data.data.translations[0].translatedText });
-            } else {
-                return res.status(500).json({ error: 'Translation not found' });
-            }
+            console.log(response);
         } catch (error) {
             console.error('Error in translating text:', error);
             return res.status(500).json({ error: 'Translation service error' });
@@ -42,4 +37,4 @@ const translateController = async (req, res) => {
     }
 };
 
-module.exports = translateController ;
+module.exports = translateController;
